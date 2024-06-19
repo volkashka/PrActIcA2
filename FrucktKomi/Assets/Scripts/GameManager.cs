@@ -22,10 +22,13 @@ public class GameManager : MonoBehaviour
 
     private bool _spawnActive;
 
+    public int _lives;
+    public Text _livesText;
+
     private void Start()
     {
         _pointsText.text = "Очки: " + _points;
-
+        _lives = 3;
         _score = PlayerPrefs.GetInt("MaxScore", _score);
         _scoreText.text = "Рекорд: " + _score;
     }
@@ -94,6 +97,18 @@ public class GameManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveScore();
+    }
+
+    public void UpdateLives()
+    {
+        _lives--;
+        _livesText.text = "Lives: " + _lives;
+        
+        if(_lives == 0)
+        {
+            DeadMenu();
+        }
+
     }
 
 

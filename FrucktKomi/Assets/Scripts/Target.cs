@@ -7,8 +7,8 @@ public class Target : MonoBehaviour
     private Rigidbody _rb;
 
 
-    private int _minForce = 14;
-    private int _maxForces = 10;
+    private int _minForce = 2;
+    private int _maxForces = 1;
 
     private int minposX = -8;
     private int maxposX = 8;
@@ -31,14 +31,14 @@ public class Target : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.y < -3)
+        if (transform.position.y < -18)
             Destroy(gameObject);
     }
 
     private Vector3 RandomForce()
     {
 
-        return Vector3.up * Random.Range(_minForce, _maxForces);
+        return Vector3.down * Random.Range(_minForce, _maxForces);
     }
 
     private Vector3 RandomSpawnPosition()
@@ -56,6 +56,7 @@ public class Target : MonoBehaviour
     {
 
         if (_isDangerous)
+
             _gameManager.DeadMenu();
 
         _gameManager.AddPoints(5);
@@ -63,7 +64,15 @@ public class Target : MonoBehaviour
         Destroy(gameObject);
         Instantiate(_boomEffect, transform.position, _boomEffect.transform.rotation);
 
+
     }
-
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "BottomTrigger")
+        {
+            _gameManager.UpdateLives();
+        }
+    }
 }
+
+
