@@ -10,7 +10,13 @@ public class LevelScript : MonoBehaviour
     // Устанавливает сложность игры при нажатии кнопки.
     public void SetDifficulty(int difficult)
     {
+     
         // Вызывает метод StartGame в скрипте GameManager и передает значение сложности.
         _gameManager.StartGame(difficult);
+   
+
+
     }
+
+
 }

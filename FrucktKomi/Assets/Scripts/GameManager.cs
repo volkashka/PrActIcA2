@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,9 +42,14 @@ public class GameManager : MonoBehaviour
 
     // Текст, отображающий количество жизней.
     [SerializeField] private Text _livesText;
+    [SerializeField] private GameObject livesText;
+
+    public GameObject pauseButton;
+
 
     private void Start()
     {
+        pauseButton.gameObject.SetActive(true);
         // Создаем текст с количеством жизней.
         GameManager.Instantiate(_livesText);
 
@@ -58,7 +64,11 @@ public class GameManager : MonoBehaviour
 
         // Устанавливаем текст с максимальным счетом.
         _scoreText.text = "Рекорд: " + _score;
+        _livesText.text = "жизни: " + _lives;
+ 
+
     }
+
 
     // Корутина, отвечающая за спавн объектов.
     IEnumerator SpawnTarget()
@@ -112,8 +122,15 @@ public class GameManager : MonoBehaviour
 
         // Скрываем меню уровня.
         _levelMenu.gameObject.SetActive(false);
+
+        livesText.gameObject.SetActive(true);
+
+     
+
     }
 
+
+  
     // Сохраняет текущий счет как максимальный счет.
     private void SaveScore()
     {
@@ -130,6 +147,8 @@ public class GameManager : MonoBehaviour
 
         // Отображаем текст смерти.
         _deadText.SetActive(true);
+
+      
     }
 
     // Перезапускает игру.
@@ -163,8 +182,10 @@ public class GameManager : MonoBehaviour
         }
 
         // Обновляем текст с количеством жизней.
+      
         _livesText.text = _lives.ToString();
         _livesText.text = "жизни: " + _lives;
+
 
         // Если у игрока закончились жизни, вызываем меню смерти.
         if (_lives == 0)
@@ -172,4 +193,6 @@ public class GameManager : MonoBehaviour
             DeadMenu();
         }
     }
+
+  
 }
