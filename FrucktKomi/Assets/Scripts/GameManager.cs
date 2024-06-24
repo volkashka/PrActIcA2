@@ -125,6 +125,7 @@ public class GameManager : MonoBehaviour
 
         livesText.gameObject.SetActive(true);
 
+
      
 
     }
