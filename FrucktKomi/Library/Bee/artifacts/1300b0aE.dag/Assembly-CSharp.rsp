@@ -120,9 +120,9 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
--r:"C:/Program Files (x86)/ZET/111/PrActIcA2-main/FrucktKomi/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll"
--r:"C:/Program Files (x86)/ZET/111/PrActIcA2-main/FrucktKomi/Library/PackageCache/com.unity.testtools.codecoverage@1.0.1/lib/ReportGenerator/ReportGeneratorMerged.dll"
--r:"C:/Program Files (x86)/ZET/111/PrActIcA2-main/FrucktKomi/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"C:/Users/dolol/OneDrive/Рабочий стол/practic_june/PrActIcA2/FrucktKomi/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll"
+-r:"C:/Users/dolol/OneDrive/Рабочий стол/practic_june/PrActIcA2/FrucktKomi/Library/PackageCache/com.unity.testtools.codecoverage@1.0.1/lib/ReportGenerator/ReportGeneratorMerged.dll"
+-r:"C:/Users/dolol/OneDrive/Рабочий стол/practic_june/PrActIcA2/FrucktKomi/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"D:/unity/2021.3.6f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"D:/unity/2021.3.6f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"D:/unity/2021.3.6f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
@@ -358,12 +358,9 @@
 "Assets/Scripts/LevelScript.cs"
 "Assets/Scripts/Lives.cs"
 "Assets/Scripts/PauseMenu.cs"
-"Assets/Scripts/ShowButton.cs"
-"Assets/Scripts/SnowButton.cs"
+"Assets/Scripts/Spawner.cs"
 "Assets/Scripts/Target.cs"
-"Assets/Scripts/Timer.cs"
 "Assets/Scripts/Timerr.cs"
-"Assets/Scripts/TimerSlider.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark02.cs"

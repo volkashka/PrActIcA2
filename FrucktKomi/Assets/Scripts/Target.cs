@@ -117,8 +117,6 @@ public class Target : MonoBehaviour
     }
 
 
-
-
     private void OnMouseDown()
     {
         // Проверяем, имеет ли объект тег "_isHeal".

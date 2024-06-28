@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     // Текст, отображающий счет.
     [SerializeField] private Text _scoreText;
 
+    [SerializeField] private Spawner spawner;
     // Индекс текущего появляющегося объекта.
     private int _index;
 
@@ -41,17 +42,15 @@ public class GameManager : MonoBehaviour
     public int _lives;
 
     // Текст, отображающий количество жизней.
-    [SerializeField] private Text _livesText;
-    [SerializeField] private GameObject livesText;
+    [SerializeField] public Text _livesText;
+    [SerializeField] public GameObject livesText;
 
     public GameObject pauseButton;
 
-
+ 
     private void Start()
     {
         pauseButton.gameObject.SetActive(true);
-        // Создаем текст с количеством жизней.
-        GameManager.Instantiate(_livesText);
 
         // Устанавливаем начальное количество очков.
         _pointsText.text = "Очки: " + _points;
@@ -64,39 +63,11 @@ public class GameManager : MonoBehaviour
 
         // Устанавливаем текст с максимальным счетом.
         _scoreText.text = "Рекорд: " + _score;
-        _livesText.text = "жизни: " + _lives;
- 
+        _livesText.text = "Жизни: " + _lives;
+       
+
 
     }
-
-
-    // Корутина, отвечающая за спавн объектов.
-    IEnumerator SpawnTarget()
-    {
-        // Пока спавн активен, выполняем следующие действия:
-        while (_spawnActive)
-        {
-            // Ждем заданное время.
-            yield return new WaitForSeconds(_spawnRate);
-
-            // Получаем индекс случайного объекта.
-            _index = IndexOfRandomObject();
-
-            // Создаем экземпляр объекта с указанным индексом.
-            Instantiate(_targets[_index]);
-
-            // Добавляем 1 очко к счету.
-            AddPoints(1);
-        }
-    }
-
-    // Возвращает индекс случайного объекта из списка.
-    private int IndexOfRandomObject()
-    {
-        // Возвращаем случайное число в диапазоне от 0 до количества объектов в списке.
-        return Random.Range(0, _targets.Count);
-    }
-
 
     // Добавляет указанное количество очков к текущему счету и обновляет текст с очками.
     public void AddPoints(int pointsToAdd)
@@ -108,14 +79,12 @@ public class GameManager : MonoBehaviour
     // Начинает игру с указанной сложностью.
     public void StartGame(int difficulty)
     {
-        // Сбрасываем количество очков.
         _points = 0;
 
-        // Активируем спавн объектов.
         _spawnActive = true;
 
         // Запускаем корутину для спавна объектов.
-        StartCoroutine(SpawnTarget());
+        spawner.StartSpawnCoroutine();
 
         // Уменьшаем скорость спавна в зависимости от сложности.
         _spawnRate /= difficulty;
@@ -125,31 +94,22 @@ public class GameManager : MonoBehaviour
 
         livesText.gameObject.SetActive(true);
 
-
-     
-
     }
 
-
-  
     // Сохраняет текущий счет как максимальный счет.
     private void SaveScore()
     {
-        // Если текущий счет больше максимального счета, сохраняем его как максимальный счет.
         if (_points > _score)
             PlayerPrefs.SetInt("MaxScore", _points);
     }
 
-    // Отображает меню смерти.
     public void DeadMenu()
     {
-        // Отключаем спавн объектов.
         _spawnActive = false;
 
-        // Отображаем текст смерти.
         _deadText.SetActive(true);
+        spawner.StopSpawn();
 
-      
     }
 
     // Перезапускает игру.
@@ -168,12 +128,10 @@ public class GameManager : MonoBehaviour
     // Обновляет количество жизней в зависимости от того, является ли объект лечебным или опасным.
     public void UpdateLives(bool isHeal)
     {
-        // Если объект лечебный, прибавляем одну жизнь.
         if (isHeal)
         {
             _lives++;
         }
-        // Если объект опасный и у игрока есть жизни, вычитаем одну жизнь.
         else
         {
             if (_lives > 0)
@@ -185,8 +143,7 @@ public class GameManager : MonoBehaviour
         // Обновляем текст с количеством жизней.
       
         _livesText.text = _lives.ToString();
-        _livesText.text = "жизни: " + _lives;
-
+        _livesText.text = "Жизни: " + _lives;
 
         // Если у игрока закончились жизни, вызываем меню смерти.
         if (_lives == 0)
@@ -194,6 +151,4 @@ public class GameManager : MonoBehaviour
             DeadMenu();
         }
     }
-
-  
 }
