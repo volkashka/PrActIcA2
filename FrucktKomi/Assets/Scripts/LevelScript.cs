@@ -19,20 +19,25 @@ public class LevelScript : MonoBehaviour
         switch (difficulty)
         {
             case Difficulty.Easy:
+                timerr.isTimerRunning = true;
                 _gameManager.StartGame(Difficulty.Easy);
                 break;
             case Difficulty.Medium:
+                timerr.isTimerRunning = true;
                 _gameManager.StartGame(Difficulty.Medium);
                 break;
             case Difficulty.Hard:
+                timerr.isTimerRunning = true;
                 _gameManager.StartGame(Difficulty.Hard);
                 break;
             default:
+                timerr.isTimerRunning = true;
                 _gameManager.StartGame(Difficulty.Medium);
                 break;
         }
-   
 
+
+       
         _gameManager._livesText.gameObject.SetActive(true);
         _gameManager._livesText.text = "Жизни: " + _gameManager._lives;
 

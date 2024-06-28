@@ -15,7 +15,7 @@ public class Timerr : MonoBehaviour
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    void Update()
+   public void Update()
     {
         // Проверяем, запущен ли таймер
         if (isTimerRunning)
