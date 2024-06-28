@@ -354,6 +354,7 @@
 "Assets/Course Library/_Source_Files/Scripts/DestroyAfterDelay.cs"
 "Assets/Scripts/BackMenu.cs"
 "Assets/Scripts/Continue.cs"
+"Assets/Scripts/FallenObjectHandler.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/LevelScript.cs"
 "Assets/Scripts/Lives.cs"

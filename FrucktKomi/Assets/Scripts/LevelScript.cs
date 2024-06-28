@@ -31,7 +31,7 @@ public class LevelScript : MonoBehaviour
                 _gameManager.StartGame(Difficulty.Medium);
                 break;
         }
-        timerr.isTimerRunning = true; // Запускаем таймер
+   
 
         _gameManager._livesText.gameObject.SetActive(true);
         _gameManager._livesText.text = "Жизни: " + _gameManager._lives;
