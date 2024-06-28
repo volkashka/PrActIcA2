@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
         // Устанавливаем текст с максимальным счетом.
         _scoreText.text = "Рекорд: " + _score;
-        _livesText.text = "Жизни: " + _lives;
+        livesText.SetActive(false);
        
 
 
@@ -76,8 +76,15 @@ public class GameManager : MonoBehaviour
         _pointsText.text = "Очки: " + _points;
     }
 
+    public enum Difficulty
+    {
+        Easy,
+        Medium,
+        Hard
+    }
+
     // Начинает игру с указанной сложностью.
-    public void StartGame(int difficulty)
+    public void StartGame(Difficulty difficulty)
     {
         _points = 0;
 
@@ -87,13 +94,23 @@ public class GameManager : MonoBehaviour
         spawner.StartSpawnCoroutine();
 
         // Уменьшаем скорость спавна в зависимости от сложности.
-        _spawnRate /= difficulty;
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                _spawnRate *= 5.5f;
+                break;
+            case Difficulty.Medium:
+                // оставляем spawnRate по умолчанию
+                break;
+            case Difficulty.Hard:
+                _spawnRate /= 5.5f;
+                break;
+        }
 
         // Скрываем меню уровня.
         _levelMenu.gameObject.SetActive(false);
 
         livesText.gameObject.SetActive(true);
-
     }
 
     // Сохраняет текущий счет как максимальный счет.
